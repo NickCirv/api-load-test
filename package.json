@@ -1,0 +1,36 @@
+{
+  "name": "api-load-test",
+  "version": "1.0.0",
+  "description": "Simple HTTP load testing. p50/p95/p99 latency, throughput, error rates. Zero dependencies.",
+  "type": "module",
+  "bin": {
+    "api-load-test": "./index.js",
+    "alt": "./index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "keywords": [
+    "developer-tools",
+    "cli",
+    "nodejs",
+    "zero-dependencies",
+    "load-testing",
+    "http",
+    "performance",
+    "benchmarking"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NickCirv/api-load-test.git"
+  },
+  "homepage": "https://github.com/NickCirv/api-load-test#readme",
+  "bugs": {
+    "url": "https://github.com/NickCirv/api-load-test/issues"
+  }
+}
