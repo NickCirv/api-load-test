@@ -1,3 +1,5 @@
+![Banner](banner.svg)
+
 # api-load-test
 
 > Simple HTTP load testing. p50/p95/p99 latency, throughput, error rates. Zero dependencies.
