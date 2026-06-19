@@ -32,5 +32,8 @@
   "homepage": "https://github.com/NickCirv/api-load-test#readme",
   "bugs": {
     "url": "https://github.com/NickCirv/api-load-test/issues"
+  },
+  "scripts": {
+    "test": "node --test"
   }
 }
