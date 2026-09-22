@@ -1,59 +1,67 @@
-<div align="center">
+![Nicholas Ashkar — api-load-test](assets/nicholas-ashkar/banner.png)
 
 # api-load-test
 
-**Fire HTTP load tests from the terminal — p50/p95/p99 latency, throughput, and error rates with zero dependencies.**
+Sends concurrent HTTP requests and summarizes latency, throughput and errors for endpoint experiments.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-0B0A09?labelColor=0B0A09&color=555)](LICENSE)
-[![Zero dependencies](https://img.shields.io/badge/dependencies-0-0B0A09?labelColor=0B0A09&color=555)](package.json)
-[![Node >=18](https://img.shields.io/badge/node-%3E%3D18-0B0A09?labelColor=0B0A09&color=555)](package.json)
 
-</div>
 
-## Install
 
-```bash
-npx github:NickCirv/api-load-test <url> [options]
-```
 
-## Usage
 
-```bash
-# Basic — 100 requests, 10 concurrent
-npx github:NickCirv/api-load-test https://api.example.com/health
+<a id="usage"></a>
 
-# Duration mode — hammer for 30 seconds, 20 concurrent
-npx github:NickCirv/api-load-test https://api.example.com/health --duration 30s --concurrency 20
+<a id="basic--100-requests-10-concurrent"></a>
 
-# POST with body and auth from environment
-MY_TOKEN=secret npx github:NickCirv/api-load-test https://api.example.com/users \
-  --method POST \
-  --body '{"name":"test"}' \
-  --header "Content-Type: application/json" \
-  --auth '$MY_TOKEN'
+<a id="duration-mode--hammer-for-30-seconds-20-concurrent"></a>
 
-# Machine-readable JSON output
-npx github:NickCirv/api-load-test https://api.example.com --requests 500 --format json --output report.json
-```
+<a id="post-with-body-and-auth-from-environment"></a>
 
-| Flag | Default | Description |
-|------|---------|-------------|
-| `--requests, -n <N>` | `100` | Total number of requests |
-| `--duration, -d <T>` | — | Run for duration (e.g. `30s`, `2m`) |
-| `--concurrency, -c <N>` | `10` | Concurrent requests |
-| `--method, -m <METHOD>` | `GET` | HTTP method |
-| `--body, -b <JSON>` | — | Request body |
-| `--header, -H <K:V>` | — | Request header (repeatable) |
-| `--auth <TOKEN>` | — | Authorization header (`$ENV_VAR` reads from env) |
-| `--timeout, -t <MS>` | `5000` | Per-request timeout in ms |
-| `--ramp-up <T>` | — | Gradually increase concurrency over duration |
-| `--format, -f <text\|json>` | `text` | Output format |
-| `--output, -o <FILE>` | — | Save JSON report to file |
+<a id="machine-readable-json-output"></a>
 
 ## What it does
 
-Sends a configurable burst of HTTP/HTTPS requests and reports latency percentiles (p50, p95, p99), throughput (req/sec), error rates, and a per-status-code breakdown. Outputs a live progress bar during the run and an ASCII latency histogram at the end. Use `--format json` to pipe results into CI assertions or dashboards. Tokens passed via `--auth '$MY_TOKEN'` are read from environment variables and never logged.
+- Count or duration runs.
+- Concurrency and ramp-up controls.
+- Configurable requests.
+- Percentile latency and output reports.
 
----
 
-<sub>Zero dependencies · Node ≥18 · MIT · by <a href="https://github.com/NickCirv">NickCirv</a></sub>
+<a id="install"></a>
+
+## Quickstart
+
+Prerequisites: Node.js `>=18` and npm. The checkout below pins the source used for this documentation.
+
+```sh
+git clone https://github.com/NickCirv/api-load-test.git
+cd api-load-test
+git checkout 9b5223fbcdf7df3b36c4cdb45892538c7bf8033f
+node index.js http://localhost:3000/healthz --requests 10 --concurrency 1
+```
+
+**Expected behavior (illustrative, not captured):** Against a running local service, prints statistics for a small ten-request run.
+
+Examples are source-inspected, **not runtime-tested**. See the research record for verification gaps.
+
+## Boundaries and data
+
+Results depend on the load-generator host and network and are not a distributed capacity benchmark. Each run sends real traffic; use an endpoint you control.
+
+## Development
+
+The manifest defines `npm test` as:
+
+```sh
+node --test
+```
+
+The captured suite is a smoke check, not end-to-end behavior coverage. Examples include “entry is valid JavaScript”, “--help exits 0”. Tests were not run for this documentation revision.
+
+See [implementation and command reference](docs/REFERENCE.md) for the package scripts and inspected interfaces, and [research record](docs/RESEARCH.md) for the pinned source, document decisions and unresolved checks.
+
+## License and contact
+
+See [LICENSE](LICENSE) for the original terms and attribution. Legal text is unchanged.
+
+[Nicholas Ashkar](https://nicholashkar.com/) · [Discuss a project](https://nicholashkar.com/#oxblood-contact)
